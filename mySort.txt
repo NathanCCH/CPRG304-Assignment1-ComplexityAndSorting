@@ -1,0 +1,35 @@
+#Heap Sort
+
+Heap sort is a efficiency and simplicity sorting algorithm that uses binary data structure.
+
+The first step of heap sort is to convert the input into a max heap which is tree-based data structure that satisfies heap property. In a max heap, any given value of node is greater than or equal to the values of its children.
+
+The second step is to repeatedly remove the maximum element from the heap and rebuild the heap. This step called "heapify". It ensures that the heap property is handled after removal.
+
+After the heap is rebuild, the element will be swaped with the last element of the heap and reduce the size of heap by one. Place the maximum element in its position.
+
+Repeat the previous step until all elements in the heap are sorted.
+
+#Pseudocode:
+
+function heapSort(array A):
+  get arr.length			// 1 assignment
+  for i from size(A) downto 2 do	// n * (1 assignment, 1 comparison, 1 function call)
+    swap A[1] with A[i]			// Total: n + 1 assignments, n comparisons, n function calls
+    heapSize = heapSize - 1		// O(n)
+    heapify(A, 1)
+
+function heapify(array A, index i):
+   left = 2 * i
+   right = 2 * i + 1					
+   largest = i
+   
+   if left <= heapSize and A[left] > A[largest] then	// n * 3 assignments
+      largest = left					// n (2 comparisons, 2  comparisons, 1 swap, 1 function call )
+   if right <= heapSize and A[right] > A[largest] then  // O(n log n)
+      largest = right
+   if largest != i then
+      swap A[i] with A[largest]				// n (swaps, decrements,  comparisons,  function  calls)
+      heapify(A, largest)				// O(n)
+
+**The dominant term is: O(n log n).
